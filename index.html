@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aristo Store - Admin Panel</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
-    
-    <style>
-        :root {
-            --primary-color: #6a11cb;
-            --secondary-color: #2575fc;
-            --accent-color: #00ffff;
-            --dark-bg: #0a0a0f;
-            --dark-card: #161622;
-            --dark-border: #2a2a3e;
-            --text-primary: #ffffff;
-            --text-secondary: #b8bcc8;
-            --success: #00d68f;
-            --warning: #ffaa00;
-            --danger: #ff3d71;
-            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --shadow-neon: 0 0 20px rgba(106, 17, 203, 0.5);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aristo Store - Admin Panel</title>
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Firebase SDKs (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
+
+  <style>
+    /* --- your variables & lots of styles --- */
+    :root { --primary-color: #6a11cb; --secondary-color: #2575fc; --accent-color: #00ffff; --dark-bg: #0a0a0f; --dark-card: #161622; --dark-border: #2a2a3e; --text-primary: #ffffff; --text-secondary: #b8bcc8; --success: #00d68f; --warning: #ffaa00; --danger: #ff3d71; --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); --shadow: 0 10px 30px rgba(0,0,0,0.3); --shadow-neon: 0 0 20px rgba(106,17,203,0.5); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Poppins', sans-serif; background-color: var(--dark-bg); color: var(--text-primary); line-height:1.6; overflow-x:hidden; }
+    .container { max-width:1400px; margin:0 auto; padding:0 15px; }
+
+    /* Header */
+    header { background:var(--dark-card); padding:15px 0; box-shadow:var(--shadow); position:sticky; top:0; z-index:100; border-bottom:1px solid var(--dark-border); }
+    .header-content { display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-family:'Orbitron',sans-serif; font-size:1.8rem; font-weight:700; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:flex; align-items:center; gap:10px; }
+    .logo i { -webkit-text-fill-color:var(--accent-color); }
+    .header-actions { display:flex; gap:15px; align-items:center; }
+    .icon-btn { background:rgba(255,255,255,0.05); border:1px solid var(--dark-border); color:var(--text-primary); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .3s ease; position:relative; }
+    .icon-btn:hover { background:rgba(106,17,203,0.2); border-color:var(--primary-color); transform:translateY(-3px); }
+    .badge { position:absolute; top:-5px; right:-5px; background:var(--danger); color:white; font-size:.7rem; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; }
+
+    /* Layout */
+    .admin-layout { display:flex; min-height:calc(100vh - 70px); }
+    .sidebar { width:250px; background:var(--dark-card); border-right:1px solid var(--dark-border); padding:20px 0; position:sticky; top:70px; height:calc(100vh - 70px); overflow-y:auto; transition:all .3s ease; }
+    .sidebar-toggle { display:none; position:fixed; bottom:20px; left:20px; width:50px; height:50px; border-radius:50%; background:var(--gradient); color:white; border:none; box-shadow:var(--shadow); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.2rem; z-index:99; }
+
+    .sidebar-menu { list-style:none; }
+    .sidebar-item { margin-bottom:5px; }
+    .
         * {
             margin: 0;
             padding: 0;
